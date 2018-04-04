@@ -116,6 +116,7 @@ router.put('/notes/:id', (req, res, next) => {
   const { id } = req.params;
   const { title, content, folderId, tags } = req.body;
   const userId = req.user.id;
+  const updateItem = { title, content, tags, userId };
  
   /***** Never trust users - validate input *****/
   if (!title) {
@@ -143,7 +144,7 @@ router.put('/notes/:id', (req, res, next) => {
       }
     });
   }
-  const updateItem = { title, content, tags, userId };
+  
   const options = { new: true };
 
   Note.findByIdAndUpdate(id, updateItem, options)
