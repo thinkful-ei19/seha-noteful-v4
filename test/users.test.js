@@ -38,7 +38,7 @@ describe('Noteful API - Users', function () {
   });
 
 
-  describe.only('/api/users', function () {
+  describe('/api/users', function () {
     describe('POST', function () {
       it('Should create a new user', function () {
         const testUser = { username, password, fullname };
