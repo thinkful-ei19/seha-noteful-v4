@@ -18,7 +18,7 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 
-describe.only('Auth endpoints', function () {
+describe('Auth endpoints', function () {
 
   before(function () {
     return mongoose.connect(TEST_MONGODB_URI)
@@ -46,7 +46,7 @@ describe.only('Auth endpoints', function () {
     return mongoose.disconnect();
   });
 
-  describe.only('/api/login', function () {
+  describe('/api/login', function () {
     it('Should return a valid auth token', function () {
       return chai.request(app)
         .post('/api/login')
@@ -88,6 +88,7 @@ describe.only('Auth endpoints', function () {
     it('Should reject request with no credentials', function (){
       return chai.request(app)
         .post('/api/login')
+        //.send({ username: '', password: '' })
         .catch(err => err.response)
         .then(res => {
           expect(res).to.have.status(400);
